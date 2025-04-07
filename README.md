@@ -77,7 +77,7 @@ Contributions are welcome! If you have suggestions for improvements or find any 
 
 ## 📄 License
 
-This project is likely licensed under the MIT License (or specify your chosen license). You can add a `LICENSE` file to the repository for details.
+This project is licensed under the https://github.com/cyberytti/tictactoe_AI/blob/main/LICENSE. You can add a `LICENSE` file to the repository for details.
 
 ---
 
