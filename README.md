@@ -31,7 +31,7 @@ Play the classic game of Tic-Tac-Toe against an intelligent AI opponent powered 
 2.  **Install Dependencies:**
     Make sure you have Python 3 installed. Then, install the required packages:
     ```bash
-    pip install langchain_groq pydantic groq
+    pip install requirements.txt
     ```
     *(Note: `groq` might be needed directly or as a dependency of `langchain_groq`)*
 
