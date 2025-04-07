@@ -18,7 +18,7 @@ Play the classic game of Tic-Tac-Toe against an intelligent AI opponent powered 
 *   **Python 🐍:** Core programming language.
 *   **Langchain (`langchain_groq`) 🦜🔗:** Framework for interacting with the LLM.
 *   **Groq API ⚡:** Provides fast LLM inference capabilities.
-*   **Pydantic <0xF0><0x9F><0xA7><0xB0>:** Used for defining the structured output format expected from the LLM.
+*   **Pydantic 🤖:** Used for defining the structured output format expected from the LLM.
 
 ## ⚙️ Setup & Installation
 
