@@ -24,7 +24,7 @@ Play the classic game of Tic-Tac-Toe against an intelligent AI opponent powered 
 
 1.  **Clone the Repository:**
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/cyberytti/tictactoe_AI
     cd tictactoe_AI
     ```
 
