@@ -40,7 +40,6 @@ Play the classic game of Tic-Tac-Toe against an intelligent AI opponent powered 
     *   Open the file `tictactoe_AI/player.py`.
     *   Find the line: `API_KEY="enter your Groq api-key"`
     *   Replace `"enter your Groq api-key"` with your actual Groq API key.
-    *   **Important:** Keep your API key secure and do not commit it directly into public repositories. Consider using environment variables or a `.env` file for better security practices in larger projects.
 
 ## ▶️ How to Play
 
