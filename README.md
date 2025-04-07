@@ -77,7 +77,7 @@ Contributions are welcome! If you have suggestions for improvements or find any 
 
 ## 📄 License
 
-This project is licensed under the https://github.com/cyberytti/tictactoe_AI/blob/main/LICENSE.
+This project is licensed under the Apache License 2.0. You can find the full license text here: [LICENSE](https://github.com/cyberytti/tictactoe_AI/blob/main/LICENSE)
 
 ---
 
