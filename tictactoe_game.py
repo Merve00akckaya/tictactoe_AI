@@ -2,9 +2,18 @@ import random
 from player import computer_move
 
 def print_board(board):
-    print("\n")
+    print("\nCurrent Board:")
     for i in range(3):
-        print(f" {board[i*3]} │ {board[i*3+1]} │ {board[i*3+2]} ")
+        # Create display row - show numbers for empty spaces, X/O for occupied
+        display_row = []
+        for j in range(3):
+            pos = i * 3 + j
+            if board[pos] == " ":
+                display_row.append(str(pos + 1))  # Show position number
+            else:
+                display_row.append(board[pos])    # Show X or O
+        
+        print(f" {display_row[0]} │ {display_row[1]} │ {display_row[2]} ")
         if i < 2:
             print("───┼───┼───")
     print("\n")
@@ -31,16 +40,33 @@ def check_winner(board):
 def is_board_full(board):
     return " " not in board
 
-def tic_tac_toe():
+def play_single_game():
     board = [" "] * 9
+    
+    # Choose difficulty level
+    print("\n" + "="*40)
+    print(" " * 10 + "TIC-TAC-TOE")
+    print("="*40)
+    print("\nChoose difficulty level:")
+    print("1. Easy - Fun AI opponent")
+    print("2. Hard - Nearly unbeatable AI")
+    
+    while True:
+        try:
+            choice = input("Enter 1 or 2: ").strip()
+            if choice in ['1', '2']:
+                difficulty = "easy" if choice == '1' else "hard"
+                break
+            else:
+                print("Please enter 1 for Easy or 2 for Hard")
+        except:
+            print("Invalid input. Please enter 1 or 2")
     
     # Randomly choose who starts (X or O)
     current_player = random.choice(["X", "O"])
     
-    print("\n" + "="*40)
-    print(" " * 10 + "TIC-TAC-TOE")
-    print("="*40)
-    print("\nEnter a number (1-9) to make your move:")
+    print(f"\nDifficulty: {difficulty.upper()} mode")
+    print("Enter a number (1-9) to make your move:")
     print_board(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
     print("Let's begin!\n")
     
@@ -48,7 +74,7 @@ def tic_tac_toe():
     if current_player == "X":
         print("You (X) will play first!")
     else:
-        print("Computer (O) will play first!")
+        print(f"Computer (O) will play first!")
     
     while True:
         print_board(board)
@@ -66,12 +92,15 @@ def tic_tac_toe():
                     print("Please enter a number between 1 and 9.")
             board[move] = current_player
         else:
-            # O's turn - call the computer_move function
-            print("\nComputer's turn (O)")
-            move, reasoning = computer_move(board)
+            # O's turn - call the computer_move function with difficulty
+            print(f"\nComputer's turn (O) - {difficulty.upper()} mode")
+            move, reasoning = computer_move(board, difficulty)
+            if move == -1:
+                print("No moves available - game should end!")
+                break
             board[move-1] = "O"
             print(f"\nComputer chooses position {move}")
-            print("\nComputer's reasoning:")
+            print(f"\nComputer's reasoning ({difficulty.upper()} mode):")
             print("-"*40)
             print(reasoning)
             print("-"*40)
@@ -82,15 +111,86 @@ def tic_tac_toe():
             if winner == "X":
                 print("\n⭐️ You win! ⭐️")
             else:
-                print("\n💻 Computer wins! 💻")
-            break
+                print(f"\n💻 Computer wins! 💻")
+                if difficulty == "hard":
+                    print("  (Hard mode is tough! 💪)")
+            return winner
         
         if is_board_full(board):
             print_board(board)
             print("\n🤝 It's a tie! 🤝")
-            break
+            return "tie"
         
         current_player = "O" if current_player == "X" else "X"
+
+def tic_tac_toe():
+    print("\n" + "="*50)
+    print(" " * 15 + "TIC-TAC-TOE GAME")
+    print("="*50)
+    
+    games_played = 0
+    player_wins = 0
+    computer_wins = 0
+    ties = 0
+    
+    while True:
+        games_played += 1
+        print(f"\n🎮 Starting Game #{games_played}")
+        
+        result = play_single_game()
+        
+        # Update statistics
+        if result == "X":
+            player_wins += 1
+        elif result == "O":
+            computer_wins += 1
+        elif result == "tie":
+            ties += 1
+        
+        # Display current statistics
+        print(f"\n📊 Game Statistics:")
+        print(f"   Games played: {games_played}")
+        print(f"   Your wins: {player_wins}")
+        print(f"   Computer wins: {computer_wins}")
+        print(f"   Ties: {ties}")
+        
+        # Ask if player wants to play again
+        print("\n" + "="*40)
+        print("What would you like to do next?")
+        print("1. Play again")
+        print("2. Quit")
+        
+        while True:
+            try:
+                choice = input("Enter 1 or 2: ").strip()
+                if choice in ['1', '2']:
+                    break
+                else:
+                    print("Please enter 1 to play again or 2 to quit")
+            except:
+                print("Invalid input. Please enter 1 or 2")
+        
+        if choice == '2':
+            print(f"\n🎉 Thanks for playing!")
+            print(f"📊 Final Statistics:")
+            print(f"   Total games: {games_played}")
+            print(f"   Your wins: {player_wins}")
+            print(f"   Computer wins: {computer_wins}")
+            print(f"   Ties: {ties}")
+            
+            if player_wins > computer_wins:
+                print("🏆 You're the overall winner! 🏆")
+            elif computer_wins > player_wins:
+                print("💻 Computer is the overall winner! 💻")
+            else:
+                print("🤝 It's an overall tie! 🤝")
+                
+            print("\nGoodbye! 👋")
+            break
+        else:
+            print("\n" + "="*50)
+            print(" " * 15 + "NEW GAME")
+            print("="*50)
 
 if __name__ == "__main__":
     tic_tac_toe()
